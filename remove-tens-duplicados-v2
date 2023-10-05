@@ -1,0 +1,19 @@
+public static List<ProcessoResumidoVO> removerDuplicatas(List<ProcessoResumidoVO> lista) {
+    Set<String> chaveDuplicada = new HashSet<>();
+    List<ProcessoResumidoVO> listaSemDuplicatas = new ArrayList<>();
+
+    for (ProcessoResumidoVO processo : lista) {
+        // Crie uma chave combinando os atributos desejados como uma string
+        String chave = processo.getIdTipoProcesso() + "_" +
+                       processo.getIdProcesso() + "_" +
+                       processo.getNumeroProcesso();
+
+        // Verifique se a chave já foi adicionada ao conjunto
+        if (!chaveDuplicada.contains(chave)) {
+            chaveDuplicada.add(chave);
+            listaSemDuplicatas.add(processo);
+        }
+    }
+
+    return listaSemDuplicatas;
+}
